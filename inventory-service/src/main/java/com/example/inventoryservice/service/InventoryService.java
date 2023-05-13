@@ -1,0 +1,37 @@
+package com.example.inventoryservice.service;
+
+import com.example.inventoryservice.dto.InventoryResponse;
+import com.example.inventoryservice.model.Inventory;
+import com.example.inventoryservice.repository.InventoryRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Service
+public class InventoryService {
+    @Autowired
+    private InventoryRepository inventoryRepository;
+
+    public boolean isStock(String skuCode){
+        Inventory inventory = inventoryRepository.findBySkuCode(skuCode);
+        return inventory==null?false:true;
+    }
+    public List<InventoryResponse> isInStock(List<String> skuCodes) {
+    	return inventoryRepository.findBySkuCodeIn(skuCodes).stream().map(this::mapToDto).toList();
+    }
+    private InventoryResponse mapToDto(Inventory inventory) {
+    	InventoryResponse inventoryResponse = new InventoryResponse();
+    	inventoryResponse.setSkuCode(inventory.getSkuCode());
+    	inventoryResponse.setStock(inventory.getQuantity() > 0);
+    	return inventoryResponse;
+    }
+  
+}
