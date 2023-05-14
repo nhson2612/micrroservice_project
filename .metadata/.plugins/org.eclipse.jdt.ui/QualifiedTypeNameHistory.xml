@@ -17,4 +17,7 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.orderservice.dto.InventoryResponse"/>
     <fullyQualifiedTypeName name="java.lang.IllegalAccessError"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="org.springframework.web.util.UriComponentsBuilder"/>
+    <fullyQualifiedTypeName name="java.net.URI"/>
 </qualifiedTypeNameHistroy>
